@@ -6,13 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div id="calculator">
-    <div id="screen">Screen</div>
+    <div id="screen">
+      <div id="screenTotal">Total value 012</div>
+      <div id="screenCurrent">Current line 01234</div>
+    </div>
     <div id="buttons">
       <button id="clear" class="topButtons">CLEAR</button>
-      <button id="backSpace" class="topButtons">Back</button>
+      <button id="backSpace" class="topButtons">BACK</button>
       <button id="seven" class="bottomButtons">7</button>
       <button id="eight" class="bottomButtons">8</button>
       <button id="nine" class="bottomButtons">9</button>
@@ -31,6 +35,7 @@
       <button id="divide" class="bottomButtons">/</button>
     </div>
   </div>
+  <div id="footer">Copyright © Zentality 2022</div>
   <script src="main.js"></script>
 </body>
 </html>
