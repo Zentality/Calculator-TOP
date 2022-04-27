@@ -10,7 +10,10 @@ let operator = "";
 //Query selectors
 const numberButtons = document.querySelectorAll(".numberButtons");
 const operatorButtons = document.querySelectorAll(".operatorButtons");
-const equalsButton = document.querySelector("#equals")
+const equalsButton = document.querySelector("#equals");
+const clearButton = document.querySelector("#clear");
+const backButton = document.querySelector("#backSpace");
+
 const screenCurrent = document.querySelector("#screenCurrent");
 const screenTotal = document.querySelector("#screenTotal");
 
@@ -35,6 +38,25 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener("click", () => {
   equals();
   console.log(currentValue, firstValue, secondValue, operator)
+});
+
+clearButton.addEventListener("click", () => {
+  clear();
+  totalValue = 0;
+  screenTotal.textContent = "";
+});
+
+backButton.addEventListener("click", () => {
+  //Removes last value of currentValue string
+  if (currentValue.length == 1){
+    currentValue = "";
+    screenCurrent.textContent = removeDigit(screenCurrent.textContent);
+  } else if (currentValue.length > 1){
+    currentValue = removeDigit(currentValue);
+    screenCurrent.textContent = removeDigit(screenCurrent.textContent);
+  }
+  
+  console.log(currentValue);
 });
 
 
@@ -91,4 +113,9 @@ function equals(){
   screenTotal.textContent = totalValue;
   clear();
   secondValue = parseInt(totalValue);
+}
+
+function removeDigit(value){
+  value = value.slice(-value, value.length - 1);
+  return value;
 }
