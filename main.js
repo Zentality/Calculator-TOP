@@ -83,6 +83,9 @@ function equals(){
     secondValue = parseInt(currentValue);
   } else {
     firstValue = parseInt(currentValue);
+    if (operator == "subtract" || operator == "divide"){
+      [firstValue, secondValue] = [secondValue, firstValue];
+    }
   }
   totalValue = operations[operator](firstValue,secondValue);
   screenTotal.textContent = totalValue;
