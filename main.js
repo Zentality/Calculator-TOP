@@ -72,6 +72,8 @@ const operations = {
   divide: (first, second) => first / second,
 }
 
+
+
 function appendOperator(value){
   if (operator != ""){
     equals();
@@ -96,6 +98,8 @@ function appendOperator(value){
   }
 }
 
+
+
 function clear(){
   screenCurrent.textContent = "";
   currentValue = 0;
@@ -103,6 +107,8 @@ function clear(){
   secondValue = 0;
   operator = "";
 }
+
+
 
 function equals(){
   if (secondValue == 0){
@@ -113,16 +119,28 @@ function equals(){
       [firstValue, secondValue] = [secondValue, firstValue];
     }
   }
+
+  //If dividing by zero
+  if (operator == "divide" && secondValue == 0){
+    screenTotal.textContent = "÷0 ? ... Just No";
+    clear();
+    return;
+  }
+
   if (operator != "") {
     totalValue = operations[operator](firstValue,secondValue);
   } else {
     totalValue = currentValue;
   }
+
+
   screenTotal.textContent = totalValue;
   screenTotal.textContent = +(Math.round(totalValue + `e+${decimalPlaces}`) + `e-${decimalPlaces}`);
   clear();
   secondValue = parseInt(totalValue);
 }
+
+
 
 function removeDigit(value){
   value = value.slice(-value, value.length - 1);
