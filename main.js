@@ -1,4 +1,5 @@
 //Global Variables
+const decimalPlaces = 5;
 let totalValue = 0;
 let currentValue = "";
 let firstValue = 0;
@@ -112,6 +113,7 @@ function equals(){
   }
   totalValue = operations[operator](firstValue,secondValue);
   screenTotal.textContent = totalValue;
+  screenTotal.textContent = +(Math.round(totalValue + `e+${decimalPlaces}`) + `e-${decimalPlaces}`);
   clear();
   secondValue = parseInt(totalValue);
 }
