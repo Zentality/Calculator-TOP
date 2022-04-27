@@ -73,7 +73,8 @@ function appendOperator(value){
   if (operator != ""){
     equals();
   }
-  firstValue = parseInt(currentValue);
+  firstValue = (currentValue == "") ? 0 : parseInt(currentValue);
+  // firstValue = parseInt(currentValue);
   currentValue = "";
   screenCurrent.textContent += ` ${value} `;
   switch(value){
@@ -104,7 +105,7 @@ function equals(){
   if (secondValue == 0){
     secondValue = parseInt(currentValue);
   } else {
-    firstValue = parseInt(currentValue);
+    firstValue = (currentValue == "") ? 0 : parseInt(currentValue);
     if (operator == "subtract" || operator == "divide"){
       [firstValue, secondValue] = [secondValue, firstValue];
     }
