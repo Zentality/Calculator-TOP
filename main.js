@@ -151,7 +151,7 @@ function equals(){
   screenTotal.textContent = totalValue;
   screenTotal.textContent = +(Math.round(totalValue + `e+${decimalPlaces}`) + `e-${decimalPlaces}`);
   clear();
-  secondValue = parseInt(totalValue);
+  secondValue = parseFloat(totalValue);
 }
 
 
