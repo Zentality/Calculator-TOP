@@ -6,8 +6,6 @@ let firstValue = 0;
 let secondValue = 0;
 let operator = "";
 
-
-
 //Query selectors
 const numberButtons = document.querySelectorAll(".numberButtons");
 const operatorButtons = document.querySelectorAll(".operatorButtons");
@@ -15,11 +13,8 @@ const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#clear");
 const backButton = document.querySelector("#backSpace");
 const decimalButton = document.querySelector("#decimal");
-
 const screenCurrent = document.querySelector("#screenCurrent");
 const screenTotal = document.querySelector("#screenTotal");
-
-
 
 //Event Listeners
 numberButtons.forEach((button) => {
@@ -33,7 +28,6 @@ numberButtons.forEach((button) => {
   });
 });
 
-
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     appendOperator(button.textContent);
@@ -41,19 +35,16 @@ operatorButtons.forEach((button) => {
   });
 });
 
-
 equalsButton.addEventListener("click", () => {
   equals();
   console.log(currentValue, firstValue, secondValue, operator)
 });
-
 
 clearButton.addEventListener("click", () => {
   clear();
   totalValue = 0;
   screenTotal.textContent = "";
 });
-
 
 decimalButton.addEventListener("click", () => {
   if (screenCurrent.textContent.length == 0){
@@ -64,7 +55,6 @@ decimalButton.addEventListener("click", () => {
     screenCurrent.textContent += ".";
   }
 });
-
 
 backButton.addEventListener("click", () => {
   //Removes last value of currentValue string
@@ -78,10 +68,6 @@ backButton.addEventListener("click", () => {
   console.log(currentValue);
 });
 
-
-
-
-
 //Object containing operation functions
 const operations = {
   add: (first, second) => first + second,
@@ -89,8 +75,6 @@ const operations = {
   multiply: (first, second) => first * second,
   divide: (first, second) => first / second,
 }
-
-
 
 function appendOperator(value){
   if (operator != ""){
@@ -115,8 +99,6 @@ function appendOperator(value){
   }
 }
 
-
-
 function clear(){
   screenCurrent.textContent = "";
   currentValue = "";
@@ -124,8 +106,6 @@ function clear(){
   secondValue = 0;
   operator = "";
 }
-
-
 
 function equals(){
   if (secondValue == 0){
@@ -150,14 +130,11 @@ function equals(){
     totalValue = currentValue;
   }
 
-
   screenTotal.textContent = totalValue;
   screenTotal.textContent = +(Math.round(totalValue + `e+${decimalPlaces}`) + `e-${decimalPlaces}`);
   clear();
   secondValue = parseFloat(totalValue);
 }
-
-
 
 function removeDigit(value){
   value = value.slice(-value, value.length - 1);
