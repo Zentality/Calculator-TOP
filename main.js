@@ -23,6 +23,9 @@ const screenTotal = document.querySelector("#screenTotal");
 //Event Listeners
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (screenCurrent.textContent.length == 0){
+      secondValue = 0;
+    }
     currentValue += button.textContent;
     screenCurrent.textContent += button.textContent;
     console.log(currentValue, firstValue, secondValue, operator);
@@ -56,7 +59,6 @@ backButton.addEventListener("click", () => {
     currentValue = removeDigit(currentValue);
     screenCurrent.textContent = removeDigit(screenCurrent.textContent);
   }
-  
   console.log(currentValue);
 });
 
@@ -111,7 +113,11 @@ function equals(){
       [firstValue, secondValue] = [secondValue, firstValue];
     }
   }
-  totalValue = operations[operator](firstValue,secondValue);
+  if (operator != "") {
+    totalValue = operations[operator](firstValue,secondValue);
+  } else {
+    totalValue = currentValue;
+  }
   screenTotal.textContent = totalValue;
   screenTotal.textContent = +(Math.round(totalValue + `e+${decimalPlaces}`) + `e-${decimalPlaces}`);
   clear();
