@@ -33,10 +33,8 @@ operatorButtons.forEach((button) => {
 });
 
 equalsButton.addEventListener("click", () => {
-  secondValue = parseInt(currentValue);
-  totalValue = operations[operator](firstValue,secondValue);
-  screenTotal.textContent = totalValue;
-  clear();
+  equals();
+  console.log(currentValue, firstValue, secondValue, operator)
 });
 
 
@@ -50,10 +48,12 @@ const operations = {
 }
 
 function appendOperator(value){
+  if (operator != ""){
+    equals();
+  }
   firstValue = parseInt(currentValue);
   currentValue = "";
   screenCurrent.textContent += ` ${value} `;
-  console.log(value);
   switch(value){
     case "+":
       operator = "add";
@@ -72,7 +72,20 @@ function appendOperator(value){
 
 function clear(){
   screenCurrent.textContent = "";
-  currentValue = "";
+  currentValue = 0;
   firstValue = 0;
   secondValue = 0;
+  operator = "";
+}
+
+function equals(){
+  if (secondValue == 0){
+    secondValue = parseInt(currentValue);
+  } else {
+    firstValue = parseInt(currentValue);
+  }
+  totalValue = operations[operator](firstValue,secondValue);
+  screenTotal.textContent = totalValue;
+  clear();
+  secondValue = parseInt(totalValue);
 }
