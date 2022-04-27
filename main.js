@@ -56,6 +56,9 @@ clearButton.addEventListener("click", () => {
 
 
 decimalButton.addEventListener("click", () => {
+  if (screenCurrent.textContent.length == 0){
+    secondValue = 0;
+  }
   if (!currentValue.includes(".") || currentValue == ""){
     currentValue += ".";
     screenCurrent.textContent += ".";
@@ -116,7 +119,7 @@ function appendOperator(value){
 
 function clear(){
   screenCurrent.textContent = "";
-  currentValue = 0;
+  currentValue = "";
   firstValue = 0;
   secondValue = 0;
   operator = "";
