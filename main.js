@@ -14,6 +14,7 @@ const operatorButtons = document.querySelectorAll(".operatorButtons");
 const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#clear");
 const backButton = document.querySelector("#backSpace");
+const decimalButton = document.querySelector("#decimal");
 
 const screenCurrent = document.querySelector("#screenCurrent");
 const screenTotal = document.querySelector("#screenTotal");
@@ -32,6 +33,7 @@ numberButtons.forEach((button) => {
   });
 });
 
+
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     appendOperator(button.textContent);
@@ -39,16 +41,27 @@ operatorButtons.forEach((button) => {
   });
 });
 
+
 equalsButton.addEventListener("click", () => {
   equals();
   console.log(currentValue, firstValue, secondValue, operator)
 });
+
 
 clearButton.addEventListener("click", () => {
   clear();
   totalValue = 0;
   screenTotal.textContent = "";
 });
+
+
+decimalButton.addEventListener("click", () => {
+  if (!currentValue.includes(".") || currentValue == ""){
+    currentValue += ".";
+    screenCurrent.textContent += ".";
+  }
+});
+
 
 backButton.addEventListener("click", () => {
   //Removes last value of currentValue string
@@ -61,6 +74,8 @@ backButton.addEventListener("click", () => {
   }
   console.log(currentValue);
 });
+
+
 
 
 
@@ -78,8 +93,7 @@ function appendOperator(value){
   if (operator != ""){
     equals();
   }
-  firstValue = (currentValue == "") ? 0 : parseInt(currentValue);
-  // firstValue = parseInt(currentValue);
+  firstValue = (currentValue == "") ? 0 : parseFloat(currentValue);
   currentValue = "";
   screenCurrent.textContent += ` ${value} `;
   switch(value){
@@ -112,9 +126,9 @@ function clear(){
 
 function equals(){
   if (secondValue == 0){
-    secondValue = parseInt(currentValue);
+    secondValue = parseFloat(currentValue);
   } else {
-    firstValue = (currentValue == "") ? 0 : parseInt(currentValue);
+    firstValue = (currentValue == "") ? 0 : parseFloat(currentValue);
     if (operator == "subtract" || operator == "divide"){
       [firstValue, secondValue] = [secondValue, firstValue];
     }
