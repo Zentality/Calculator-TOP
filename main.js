@@ -127,7 +127,7 @@ function equals(){
   if (operator != "") {
     totalValue = operations[operator](firstValue,secondValue);
   } else {
-    if (isNaN(parseInt(currentValue))){
+    if (isNaN(parseFloat(currentValue))){
       currentValue = 0;
     }
     totalValue = currentValue;
